@@ -1,0 +1,25 @@
+{
+  "name": "phonebook-backend",
+  "version": "1.0.0",
+  "description": "Created as part of learning Node.js and Express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manugeo/phonebook-backend.git"
+  },
+  "author": "Manu Thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manugeo/phonebook-backend/issues"
+  },
+  "homepage": "https://github.com/manugeo/phonebook-backend#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
