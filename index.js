@@ -25,6 +25,10 @@ let persons = [
   }
 ];
 
+const getRandomNineDigitInteger = () => {
+  return Math.floor(100000000 + (Math.random() * 900000000));
+};
+
 app.get('/api/persons', (request, response) => {
   response.json(persons);
 });
@@ -52,6 +56,18 @@ app.delete('/api/persons/:id', (request, response) => {
   persons = persons.filter(p => (p.id !== id));
   console.log(`Deleted person with id: ${id}.`);
   response.status(204).end();
+});
+
+app.post('/api/persons', (request, response) => {
+  const body = request.body;
+  const newId = getRandomNineDigitInteger();
+  const person = {
+    "id": newId,
+    "name": body.name || 'Temp Name',
+    "number": body.number || "040-123456"
+  };
+  persons = persons.concat(person);
+  response.json(person);
 });
 
 const PORT = 3001
