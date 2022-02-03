@@ -60,11 +60,13 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body;
-  const newId = getRandomNineDigitInteger();
+  if (!body.name) return response.status(400).json({ error: "Name is required."});
+  if (!body.number) return response.status(400).json({ error: "Number is required."});
+  if (persons.some(person => person.name === body.name)) return response.status(400).json({ error: "Name must be unique."});
   const person = {
-    "id": newId,
-    "name": body.name || 'Temp Name',
-    "number": body.number || "040-123456"
+    "id": getRandomNineDigitInteger(),
+    "name": body.name,
+    "number": body.number
   };
   persons = persons.concat(person);
   response.json(person);
