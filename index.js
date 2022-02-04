@@ -2,7 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 app.use(express.json());
-app.use(morgan('tiny'));
+morgan.token('content', (req, res) =>  JSON.stringify(req.body || null));
+morgan.token("custom", ":method :url :status :res[content-length] - :response-time ms :content");
+app.use(morgan('custom'));
 
 let persons = [
   {
